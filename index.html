@@ -117,7 +117,7 @@
     }
     .hero-title {
       font-family: 'Black Han Sans', sans-serif;
-      font-size: clamp(5rem, 18vw, 18rem);
+      font-size: clamp(3rem, 10vw, 10rem);
       line-height: 0.85;
       letter-spacing: -0.02em;
       color: #ffffff;
@@ -655,12 +655,13 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">ZIZZOZ</div>
+  <div class="logo"></div>
   <div class="nav-links">
     <a href="#hero">Hjem</a>
     <a href="#sange">Sange</a>
     <a href="#videoer">Videoer</a>
     <a href="#booking">Booking</a>
+    <a href="#spin">Spin</a>
   </div>
 </nav>
 
@@ -696,20 +697,200 @@
 <section id="booking">
   <div class="booking-inner">
     <p class="section-label">Kontakt</p>
-    <h2 class="section-title">Booking</h2>
-    <div class="divider" style="margin: 0 auto 24px;"></div>
-    <p style="opacity:0.5; font-size:1.1rem; line-height:1.8;">
-      Klar til at booke DJ Zizzoz til dit næste arrangement?<br>
-      Send en besked, og vi finder en dato.
-    </p>
-    <a href="mailto:djzizzoz@hotmail.com" class="booking-email">djzizzoz@hotmail.com</a>
-    <div class="social-row">
+    <h2 class="section-title">Skriv til mig</h2>
+    <div class="divider" style="margin: 0 auto 32px;"></div>
+    <div id="contactForm" style="max-width:500px;margin:0 auto;text-align:left;">
+      <div style="margin-bottom:18px;">
+        <label style="display:block;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.6;margin-bottom:8px;">Navn</label>
+        <input id="cfName" type="text" placeholder="Dit navn" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1rem;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#ffe033'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+      </div>
+      <div style="margin-bottom:18px;">
+        <label style="display:block;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.6;margin-bottom:8px;">Email</label>
+        <input id="cfEmail" type="email" placeholder="Din email" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1rem;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#ffe033'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+      </div>
+      <div style="margin-bottom:24px;">
+        <label style="display:block;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.6;margin-bottom:8px;">Besked</label>
+        <textarea id="cfMsg" rows="5" placeholder="Hvad handler det om?" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1rem;outline:none;resize:vertical;transition:border 0.2s;" onfocus="this.style.borderColor='#ffe033'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
+      </div>
+      <button onclick="sendContact()" style="width:100%;padding:16px;background:#ffe033;color:#1a0a00;font-family:'Black Han Sans',sans-serif;font-size:1.1rem;letter-spacing:0.15em;border:none;border-radius:4px;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#ffd000'" onmouseout="this.style.background='#ffe033'">
+        SEND BESKED ✉️
+      </button>
+      <div id="cfConfirm" style="display:none;margin-top:16px;padding:14px;background:rgba(255,224,51,0.15);border:1px solid #ffe033;border-radius:4px;text-align:center;color:#ffe033;font-weight:700;letter-spacing:0.1em;">
+        ✅ Besked sendt! Dj Zizzoz vender tilbage hurtigst muligt.
+      </div>
+    </div>
+    <div class="social-row" style="margin-top:48px;">
       <a href="https://open.spotify.com/artist/4C3poH8cn4x6TvoCJa1yBb" target="_blank" class="social-btn">Spotify</a>
       <a href="https://music.apple.com/search?term=dj+zizzoz" target="_blank" class="social-btn">Apple Music</a>
       <a href="https://youtube.com/@djzizzozofficial" target="_blank" class="social-btn">YouTube</a>
     </div>
   </div>
+
+  <script>
+  function sendContact() {
+    const name = document.getElementById('cfName').value.trim();
+    const email = document.getElementById('cfEmail').value.trim();
+    const msg = document.getElementById('cfMsg').value.trim();
+    if (!name || !email || !msg) {
+      alert('Udfyld venligst alle felter 😊');
+      return;
+    }
+    const subject = encodeURIComponent('Besked fra ' + name + ' via djzizzoz.dk');
+    const body = encodeURIComponent('Navn: ' + name + '\nEmail: ' + email + '\n\nBesked:\n' + msg);
+    window.location.href = 'mailto:djzizzoz@hotmail.com?subject=' + subject + '&body=' + body;
+    document.getElementById('cfConfirm').style.display = 'block';
+    document.getElementById('cfName').value = '';
+    document.getElementById('cfEmail').value = '';
+    document.getElementById('cfMsg').value = '';
+  }
+  </script>
 </section>
+
+
+<!-- SPIN -->
+<section id="spin" style="background:#0a0a0a;text-align:center;padding:100px 24px;">
+  <p class="section-label">Prøv lykken</p>
+  <h2 class="section-title">Spin & Vind en Sang</h2>
+  <div class="divider" style="margin:0 auto 48px;"></div>
+
+  <div style="position:relative;display:inline-block;margin-bottom:40px;">
+    <!-- Arrow pointer -->
+    <div style="position:absolute;top:-28px;left:50%;transform:translateX(-50%);z-index:10;font-size:2.5rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.8));">▼</div>
+
+    <!-- Wheel -->
+    <canvas id="spinWheel" width="340" height="340" style="border-radius:50%;box-shadow:0 0 60px rgba(255,224,51,0.3),0 0 120px rgba(255,224,51,0.1);cursor:pointer;display:block;"></canvas>
+
+    <!-- Center button -->
+    <div id="spinBtn" onclick="spinWheel()" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;background:#ffe033;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 30px rgba(255,224,51,0.6);z-index:5;transition:transform 0.2s;">
+      <span style="font-family:'Black Han Sans',sans-serif;font-size:0.75rem;color:#1a0a00;letter-spacing:0.05em;">SPIN</span>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div id="spinResult" style="display:none;margin-top:16px;padding:24px 32px;background:rgba(255,224,51,0.1);border:2px solid #ffe033;border-radius:8px;max-width:400px;margin-left:auto;margin-right:auto;">
+    <div style="font-size:2rem;margin-bottom:8px;" id="spinEmoji"></div>
+    <div style="font-family:'Black Han Sans',sans-serif;font-size:1.4rem;color:#ffe033;margin-bottom:4px;" id="spinSongTitle"></div>
+    <div style="opacity:0.5;font-size:0.85rem;margin-bottom:16px;" id="spinSongGenre"></div>
+    <a id="spinSpotifyLink" href="#" target="_blank" style="display:inline-block;padding:12px 28px;background:#1db954;color:#fff;font-family:'Black Han Sans',sans-serif;font-size:0.9rem;letter-spacing:0.1em;border-radius:30px;text-decoration:none;">
+      ▶ Lyt på Spotify
+    </a>
+  </div>
+</section>
+
+<script>
+(function() {
+  const spinSongs = [
+    { title:"Sol i mit blod",               emoji:"☀️", genre:"Single · 2026", spotifyId:"4Eu7tmR94WGZZNZVR5Ek0F", type:"album" },
+    { title:"Vi danser hele natten",         emoji:"🕺", genre:"Single · 2025", spotifyId:"5MHdMUeURawpFnPm3PalVf", type:"album" },
+    { title:"Velkommen Nytår",               emoji:"🎆", genre:"Single · 2025", spotifyId:"7MTZRBGcJmKebPZxNUr9qr", type:"album" },
+    { title:"15 Procent",                   emoji:"💸", genre:"Single · 2025", spotifyId:"5S2Zu9KrLUwMV7XwcbeGbF", type:"album" },
+    { title:"Black Friday",                 emoji:"🛍️", genre:"Single · 2025", spotifyId:"23mWuV5TJqTOro3lqSgdxe", type:"album" },
+    { title:"Jul i stuen",                  emoji:"🎄", genre:"Single · 2025", spotifyId:"0zUPLkDO0rAseVJ9fvda0P", type:"album" },
+    { title:"Julemanden danser i sin kane", emoji:"🎅", genre:"Single · 2025", spotifyId:"39NzkEgaOBP93uhBs0YAjy", type:"album" },
+    { title:"Slik eller ballade",           emoji:"🎃", genre:"Single · 2025", spotifyId:"2I1gjxcd4eQc3NaECzLeyr", type:"album" },
+    { title:"Det er juletid",               emoji:"⛄", genre:"Single · 2025", spotifyId:"320BFVFqYDi75HcWrcTWFi", type:"album" },
+  ];
+
+  const colors = [
+    '#ffe033','#e65c00','#b8860b','#ff2d55','#ffe033',
+    '#e65c00','#b8860b','#ff2d55','#ffe033'
+  ];
+
+  const canvas = document.getElementById('spinWheel');
+  const ctx = canvas.getContext('2d');
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+  const r = cx - 4;
+  const n = spinSongs.length;
+  const arc = (2 * Math.PI) / n;
+
+  let currentAngle = 0;
+  let spinning = false;
+
+  function drawWheel(angle) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < n; i++) {
+      const start = angle + i * arc;
+      const end = start + arc;
+      // Slice
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, r, start, end);
+      ctx.closePath();
+      ctx.fillStyle = colors[i % colors.length];
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      // Text
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(start + arc / 2);
+      ctx.textAlign = 'right';
+      ctx.fillStyle = i % 2 === 0 ? '#1a0a00' : '#fff';
+      ctx.font = "bold 11px 'Barlow Condensed', sans-serif";
+      const label = spinSongs[i].emoji + ' ' + (spinSongs[i].title.length > 14 ? spinSongs[i].title.slice(0,13)+'…' : spinSongs[i].title);
+      ctx.fillText(label, r - 12, 4);
+      ctx.restore();
+    }
+    // Outer ring
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+    ctx.strokeStyle = '#ffe033';
+    ctx.lineWidth = 6;
+    ctx.stroke();
+  }
+
+  drawWheel(currentAngle);
+
+  let animFrame;
+  window.spinWheel = function() {
+    if (spinning) return;
+    spinning = true;
+    document.getElementById('spinResult').style.display = 'none';
+    document.getElementById('spinBtn').style.transform = 'translate(-50%,-50%) scale(0.9)';
+
+    const extraSpins = (5 + Math.floor(Math.random() * 5)) * 2 * Math.PI;
+    const targetAngle = currentAngle + extraSpins + Math.random() * 2 * Math.PI;
+    const duration = 4000;
+    const start = performance.now();
+    const startAngle = currentAngle;
+
+    function ease(t) { return 1 - Math.pow(1 - t, 4); }
+
+    function animate(now) {
+      const elapsed = now - start;
+      const t = Math.min(elapsed / duration, 1);
+      currentAngle = startAngle + (targetAngle - startAngle) * ease(t);
+      drawWheel(currentAngle);
+      if (t < 1) {
+        animFrame = requestAnimationFrame(animate);
+      } else {
+        spinning = false;
+        document.getElementById('spinBtn').style.transform = 'translate(-50%,-50%) scale(1)';
+        // Find winner — pointer at top = -PI/2
+        const normalized = ((- currentAngle - Math.PI / 2) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+        const idx = Math.floor(normalized / arc) % n;
+        showResult(spinSongs[idx]);
+      }
+    }
+    requestAnimationFrame(animate);
+  };
+
+  function showResult(song) {
+    document.getElementById('spinEmoji').textContent = song.emoji;
+    document.getElementById('spinSongTitle').textContent = song.title;
+    document.getElementById('spinSongGenre').textContent = song.genre;
+    document.getElementById('spinSpotifyLink').href = `https://open.spotify.com/${song.type}/${song.spotifyId}`;
+    const el = document.getElementById('spinResult');
+    el.style.display = 'block';
+    el.style.marginTop = '24px';
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  canvas.addEventListener('click', window.spinWheel);
+})();
+</script>
 
 <footer>
   <span>© 2025 DJ ZIZZOZ</span>
